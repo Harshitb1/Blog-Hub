@@ -35,6 +35,13 @@ public class RegisterActivity extends AppCompatActivity {
         login= findViewById(R.id.reg_loginButton);
         mAuth= FirebaseAuth.getInstance();
 
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
-                                    sendToMain();
+                                    Intent mainIntent = new Intent(RegisterActivity.this,SetupActivity.class);
+                                    startActivity(mainIntent);
+                                    finish();
                                 }
                                 else{
                                     String error= task.getException().getMessage();
