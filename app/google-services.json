@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "803551951822-fg8tvgdlde5v77ru6mlgogbuptpmrjbk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sagar.bloghub",
+            "certificate_hash": "9c2b3c10e298caaf0d8afd9ae0c712d26a9507f7"
+          }
+        },
+        {
           "client_id": "803551951822-ccpfa8nlao87md152t8v7pmdvrvlmbav.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
