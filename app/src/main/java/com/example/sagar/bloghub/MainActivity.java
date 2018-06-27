@@ -42,45 +42,50 @@ public class MainActivity extends AppCompatActivity {
         toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Blog Hub");
-        addPostButton=findViewById(R.id.addPostButton);
-        bottomNavigationView= findViewById(R.id.mainBottomNav);
-        homeFragment=new HomeFragment();
-        notificationFragment= new NotificationFragment();
-        accountFragment= new AccountFragment();
 
-        addPostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(mAuth.getCurrentUser()!= null) {
+            addPostButton = findViewById(R.id.addPostButton);
+            bottomNavigationView = findViewById(R.id.mainBottomNav);
+            homeFragment = new HomeFragment();
+            notificationFragment = new NotificationFragment();
+            accountFragment = new AccountFragment();
 
-                Intent intent= new Intent(MainActivity.this,NewPostActivity.class);
-                startActivity(intent);
-            }
-        });
+            replaceFragment(homeFragment);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            addPostButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                switch (item.getItemId()){
-
-                    case R.id.bottom_home:
-                        replaceFragment(homeFragment);
-                        return true;
-
-                    case R.id.bottom_notification:
-                        replaceFragment(notificationFragment);
-                        return true;
-
-                    case R.id.bottom_account:
-                        replaceFragment(accountFragment);
-                        return true;
-
-                     default:
-                         return false;
+                    Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
+                    startActivity(intent);
                 }
+            });
 
-            }
-        });
+            bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                    switch (item.getItemId()) {
+
+                        case R.id.bottom_home:
+                            replaceFragment(homeFragment);
+                            return true;
+
+                        case R.id.bottom_notification:
+                            replaceFragment(notificationFragment);
+                            return true;
+
+                        case R.id.bottom_account:
+                            replaceFragment(accountFragment);
+                            return true;
+
+                        default:
+                            return false;
+                    }
+
+                }
+            });
+        }
 
     }
 
@@ -125,26 +130,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem item){
+            switch (item.getItemId()) {
 
-            case R.id.action_logout_btn:
-                logOut();
-                return true;
+                case R.id.action_logout_btn:
+                    logOut();
+                    return true;
 
-            case R.id.action_settings_btn:
+                case R.id.action_settings_btn:
 
-                //Intent settingsIntent = new Intent(MainActivity.this, SetupActivity.class);
-                //startActivity(settingsIntent);
+                    //Intent settingsIntent = new Intent(MainActivity.this, SetupActivity.class);
+                    //startActivity(settingsIntent);
 
-                return true;
-
-
-            default:
-                return false;
+                    return true;
 
 
-        }
+                default:
+                    return false;
+
+
+            }
+
 
     }
 
