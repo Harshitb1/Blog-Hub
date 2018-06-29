@@ -51,7 +51,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         String descData= list.get(position).getDesc();
         holder.setDescText(descData);
 
-        String image_url = list.get(position).getImage_url();
+        final String image_url = list.get(position).getImage_url();
         String thumb_uri = list.get(position).getImage_thumb();
         holder.setBlogImage(image_url,thumb_uri);
 
@@ -62,11 +62,11 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                 if(task.isSuccessful()){
-
+                    Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
                     String userName= task.getResult().getString("name");
                     String userImage= task.getResult().getString("image");
-                    holder.setUserData(userName,userImage);
-
+                    holder.setUserName(userName);
+                    holder.setImage(userImage);
                 }else{
 
                     String error= task.getException().getMessage();
@@ -117,11 +117,15 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             dateTextView.setText(date);
         }
 
-        public void setUserData(String name, String image){
+        public void setUserName(String name){
 
             usernameTextView=view.findViewById(R.id.usernameTextView);
             usernameTextView.setText(name);
 
+
+        }
+
+        public void setImage(String image){
             circleImageView= view.findViewById(R.id.profileImageView);
             Glide.with(context).load(image).into(circleImageView);
         }
