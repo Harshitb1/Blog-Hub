@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,10 +45,10 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:hint="username"
-                android:textColor="#000000"
-                android:textStyle="bold"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="#000000"
                 android:textColorHint="@color/halftransparent"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/profileImageView"
                 app:layout_constraintTop_toTopOf="@+id/profileImageView" />
@@ -85,7 +86,6 @@
                 android:id="@+id/postDescTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -95,10 +95,17 @@
                 android:textColor="@color/TextColor"
                 android:textColorHint="@color/halftransparent"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                app:srcCompat="@mipmap/likeDisabled"
+                app:layout_constraintTop_toBottomOf="@id/postDescTextView"
+                tools:layout_editor_absoluteX="37dp"
+                tools:layout_editor_absoluteY="500dp" />
 
         </android.support.constraint.ConstraintLayout>
 
