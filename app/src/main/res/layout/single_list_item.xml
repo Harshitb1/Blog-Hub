@@ -80,7 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profileImageView"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/postDescTextView"
@@ -98,14 +98,32 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postImageView" />
+
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
+                android:id="@+id/likesImageView"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
-                app:srcCompat="@mipmap/likeDisabled"
-                app:layout_constraintTop_toBottomOf="@id/postDescTextView"
-                tools:layout_editor_absoluteX="37dp"
-                tools:layout_editor_absoluteY="500dp" />
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/postDescTextView"
+                app:srcCompat="@mipmap/likeDisabled" />
+
+            <TextView
+                android:id="@+id/likesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                app:layout_constraintBottom_toBottomOf="@+id/likesImageView"
+                app:layout_constraintStart_toEndOf="@+id/likesImageView"
+                app:layout_constraintTop_toTopOf="@+id/likesImageView" />
 
         </android.support.constraint.ConstraintLayout>
 

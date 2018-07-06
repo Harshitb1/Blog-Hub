@@ -86,7 +86,9 @@ public class HomeFragment extends Fragment {
 
                         if (doc.getType() == DocumentChange.Type.ADDED) {
 
-                            BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
+                            String blogPostId= doc.getDocument().getId();
+
+                            BlogPost blogPost = doc.getDocument().toObject(BlogPost.class).withId(blogPostId);
                             if(isFirstPageLoadedFirst) {
                                 blogList.add(blogPost);
                             }else {
@@ -120,8 +122,9 @@ public class HomeFragment extends Fragment {
                     for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
 
                         if (doc.getType() == DocumentChange.Type.ADDED) {
+                            String blogPostId= doc.getDocument().getId();
 
-                            BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
+                            BlogPost blogPost = doc.getDocument().toObject(BlogPost.class).withId(blogPostId);
                             blogList.add(blogPost);
                             adapter.notifyDataSetChanged();
                         }

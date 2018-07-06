@@ -3,7 +3,7 @@ package com.example.sagar.bloghub;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class BlogPost {
+public class BlogPost extends BlogPostId{
 
     String user_id,image_url,desc,image_thumb;
     Date timestamp;
