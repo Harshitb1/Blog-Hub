@@ -101,8 +101,8 @@
 
             <ImageView
                 android:id="@+id/likesImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginStart="16dp"
@@ -110,7 +110,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/postDescTextView"
-                app:srcCompat="@mipmap/likeDisabled" />
+                app:srcCompat="@mipmap/likedisabled" />
 
             <TextView
                 android:id="@+id/likesTextView"
