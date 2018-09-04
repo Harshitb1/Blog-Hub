@@ -30,8 +30,11 @@ public class MainActivity extends AppCompatActivity {
     String currentUserId;
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment;
+    Fragment currentFragment;
     NotificationFragment notificationFragment;
     AccountFragment accountFragment;
+    FragmentTransaction fragmentTransaction;
+
 
 
     @Override
@@ -51,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             notificationFragment = new NotificationFragment();
             accountFragment = new AccountFragment();
 
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.main_container,homeFragment);
+            fragmentTransaction.add(R.id.main_container,notificationFragment);
+            fragmentTransaction.add(R.id.main_container,accountFragment);
+            fragmentTransaction.hide(homeFragment);
+            fragmentTransaction.hide(accountFragment);
+            fragmentTransaction.hide(notificationFragment);
+            fragmentTransaction.commit();
             replaceFragment(homeFragment);
 
             addPostButton.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +129,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
     void replaceFragment(Fragment fragment){
-
-        FragmentTransaction fragmentTransaction =getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_container,fragment);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if(currentFragment!=null)
+            fragmentTransaction.hide(currentFragment);
+        fragmentTransaction.show(fragment);
+        currentFragment = fragment;
         fragmentTransaction.commit();
     }
 

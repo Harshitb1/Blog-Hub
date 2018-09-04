@@ -89,10 +89,13 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             }
         });
 
-        long milliseconds =list.get(position).getTimestamp().getTime();
-        String dateString = DateFormat.format("MM/dd/yyyy", new Date(milliseconds)).toString();
-        holder.setTime(dateString);
-
+        try {
+            long milliseconds = list.get(position).getTimestamp().getTime();
+            String dateString = DateFormat.format("MM/dd/yyyy", new Date(milliseconds)).toString();
+            holder.setTime(dateString);
+        }catch (Exception e){
+            Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+        }
         firebaseFirestore.collection("Posts/"+blogPostId+"/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {

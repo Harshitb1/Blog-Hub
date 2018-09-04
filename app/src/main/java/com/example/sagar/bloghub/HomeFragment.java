@@ -37,11 +37,9 @@ public class HomeFragment extends Fragment {
     DocumentSnapshot lastVisible;
     Boolean isFirstPageLoadedFirst=true;
 
-
     public HomeFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
