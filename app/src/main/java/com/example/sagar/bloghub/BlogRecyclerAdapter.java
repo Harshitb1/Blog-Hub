@@ -1,6 +1,7 @@
 package com.example.sagar.bloghub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -70,13 +71,13 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         holder.setBlogImage(image_url,thumb_uri);
 
 
-        String userId= list.get(position).getUser_id();
+        final String userId= list.get(position).getUser_id();
         firebaseFirestore.collection("Users").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
                 if(task.isSuccessful()){
-                   // Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
                     String userName= task.getResult().getString("name");
                     String userImage= task.getResult().getString("image");
                     holder.setUserName(userName);
@@ -88,13 +89,12 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 }
             }
         });
-
         try {
             long milliseconds = list.get(position).getTimestamp().getTime();
             String dateString = DateFormat.format("MM/dd/yyyy", new Date(milliseconds)).toString();
             holder.setTime(dateString);
         }catch (Exception e){
-            Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,e.getMessage().toString(),Toast.LENGTH_SHORT).show();
         }
         firebaseFirestore.collection("Posts/"+blogPostId+"/Likes").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -107,6 +107,16 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             }
         });
 
+        firebaseFirestore.collection("Posts/"+blogPostId+"/Comments").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                if(!documentSnapshots.isEmpty()){
+                    holder.updateCommentCount(documentSnapshots.size());
+                }else{
+                    holder.updateCommentCount(0);
+                }
+            }
+        });
         firebaseFirestore.collection("Posts/"+blogPostId+"/Likes").document(currentUserId).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e) {
@@ -149,6 +159,15 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
             }
         });
+
+        holder.commentImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,CommentsActivity.class);
+                intent.putExtra("blogPostid",blogPostId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -167,11 +186,14 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         CircleImageView circleImageView;
         ImageView likeImageView;
         TextView likeTextView;
+        ImageView commentImageView;
+        TextView commentCountTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             view= itemView;
             likeImageView= view.findViewById(R.id.likesImageView);
+            commentImageView=view.findViewById(R.id.CommentButtonImageView);
 
         }
 
@@ -187,7 +209,6 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         }
 
         public void  setTime(String date){
-
             dateTextView=view.findViewById(R.id.timeTextView);
             dateTextView.setText(date);
         }
@@ -206,6 +227,10 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         public void updateLikeCount(int count){
             likeTextView=view.findViewById(R.id.likesTextView);
             likeTextView.setText(count+"");
+        }
+        public void updateCommentCount(int count){
+            commentCountTextView=view.findViewById(R.id.CommentCountTextView);
+            commentCountTextView.setText(count+"");
         }
     }
 }
