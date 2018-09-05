@@ -135,8 +135,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/likesImageView"
                 app:layout_constraintEnd_toStartOf="@+id/CommentCountTextView"
                 app:layout_constraintTop_toTopOf="@+id/likesImageView"
-                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal"
-                tools:ignore="UnknownId" />
+                app:srcCompat="@drawable/ic_comment_black_24dp"
+                tools:ignore="UnknownId,VectorDrawableCompat" />
 
             <TextView
                 android:id="@+id/CommentCountTextView"

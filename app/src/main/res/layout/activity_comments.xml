@@ -75,6 +75,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/CommentEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/CommentEditText"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal" />
+        app:srcCompat="@drawable/ic_send_black_24dp"
+        tools:ignore="VectorDrawableCompat" />
 
 </android.support.constraint.ConstraintLayout>
