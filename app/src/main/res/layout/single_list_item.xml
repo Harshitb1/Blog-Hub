@@ -125,6 +125,38 @@
                 app:layout_constraintStart_toEndOf="@+id/likesImageView"
                 app:layout_constraintTop_toTopOf="@+id/likesImageView" />
 
+            <ImageView
+                android:id="@+id/CommentButtonImageView"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/likesImageView"
+                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintHorizontal_bias="0.98"
+                app:layout_constraintStart_toEndOf="@+id/likesTextView"
+                app:layout_constraintTop_toTopOf="@+id/likesImageView"
+                app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal"
+                tools:ignore="UnknownId" />
+
+            <TextView
+                android:id="@+id/CommentCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="8dp"
+                android:text="0"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/CommentButtonImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/CommentButtonImageView"
+                app:layout_constraintVertical_bias="1.0" />
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
