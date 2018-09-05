@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Comment {
 
-    String message, userId;
+    String message, user_id;
     Date timestamp;
 
     public Comment() { }
 
     public Comment(String message, String userId, Date timestamp) {
         this.message = message;
-        this.userId = userId;
+        this.user_id = userId;
         this.timestamp = timestamp;
     }
 
@@ -24,11 +24,11 @@ public class Comment {
     }
 
     public String getUserId() {
-        return userId;
+        return user_id;
     }
 
     public void setUserId(String userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public Date getTimestamp() {

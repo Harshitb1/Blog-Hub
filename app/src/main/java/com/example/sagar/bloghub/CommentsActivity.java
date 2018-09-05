@@ -20,6 +20,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -67,7 +68,9 @@ public class CommentsActivity extends AppCompatActivity {
         commentList.setLayoutManager(new LinearLayoutManager(this));
         commentList.setAdapter(adapter);
 
-        firebaseFirestore.collection("Posts/"+blog_post_id+"/Comments").addSnapshotListener(CommentsActivity.this,new EventListener<QuerySnapshot>() {
+        Query firstQuery = firebaseFirestore.collection("Posts/"+blog_post_id+"/Comments").orderBy("timestamp",Query.Direction.ASCENDING);
+        firstQuery.addSnapshotListener(CommentsActivity.this,new EventListener<QuerySnapshot>() {
+//        firebaseFirestore.collection("Posts/"+blog_post_id+"/Comments").addSnapshotListener(CommentsActivity.this,new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
 
