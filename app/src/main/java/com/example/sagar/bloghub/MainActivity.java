@@ -125,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+            CheckFirstTime firstTime = new CheckFirstTime();
+
+            if(firstTime.isFirstTime(MainActivity.this)){
+                Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         }
 
     }
