@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -154,6 +155,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
             switch (item.getItemId()) {
+
+                case R.id.action_search_btn:
+                     onSearchRequested();
+                     Log.d("searchPresssed",onSearchRequested()+"");
+                     return true;
 
                 case R.id.action_logout_btn:
                     logOut();
