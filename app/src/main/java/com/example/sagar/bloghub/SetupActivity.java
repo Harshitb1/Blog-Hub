@@ -192,6 +192,9 @@ public class SetupActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 profileImageUri = result.getUri();
+                circleImageView.getLayoutParams().height = 400;
+                circleImageView.getLayoutParams().width = 400;
+                circleImageView.requestLayout();
                 circleImageView.setImageURI(profileImageUri);
                 isChanged = true;
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
